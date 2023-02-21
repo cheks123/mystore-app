@@ -1,0 +1,36 @@
+<div class="cart" *ngIf="isNotEmpty; else noItem">
+  <section class="products">
+    <div class="product-card" *ngFor="let item of cart">
+      <img src="{{ item.url }}" alt="{{ item.name }}">
+      <div class="details">
+        <h3> {{ item.name }}</h3>
+        <p>Unit Price: ${{ item.price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+      </div>
+    </div>
+    <p>Total: ${{ totalPrice }}</p>
+  </section>
+  <section class="form-section">
+    <form (ngSubmit)="checkout()">
+      
+        <label for="first_name">First Name:</label>
+        <input type="text" [(ngModel)] = 'first_name' name="first_name" placeholder="Your first name .." id="first_name"/>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" [(ngModel)] = 'last_name' name="last_name" placeholder="Your last name .." id="last_name"/>
+      
+      
+        <label for="address">Address:</label>
+        <input type="text" [(ngModel)] = 'address' name="address" placeholder="Your address .." id="address"/>
+      
+        <label for="credit_card_num">Credit Card Number:</label>
+        <input type="text" [(ngModel)] = 'credit_card_num' name="credit_card_num" placeholder="Your credit card number .." id="credit_card_num"/>
+      
+        <input type="submit" value="submit"/>
+      
+    </form>
+  </section>
+</div>
+<ng-template #noItem>
+  <p class="no-item">There no item in the cart.</p>
+</ng-template>
